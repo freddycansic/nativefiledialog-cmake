@@ -373,6 +373,8 @@ nfdresult_t NFD_OpenDialog( const nfdchar_t *filterList,
 
     ::IFileOpenDialog *fileOpenDialog(NULL);
 
+    HRESULT result;
+
     if ( !SUCCEEDED(coResult) && coResult != RPC_E_CHANGED_MODE )
     {
         fileOpenDialog = NULL;
@@ -381,7 +383,7 @@ nfdresult_t NFD_OpenDialog( const nfdchar_t *filterList,
     }
 
     // Create dialog
-    HRESULT result = ::CoCreateInstance(::CLSID_FileOpenDialog, NULL,
+    result = ::CoCreateInstance(::CLSID_FileOpenDialog, NULL,
                                         CLSCTX_ALL, ::IID_IFileOpenDialog,
                                         reinterpret_cast<void**>(&fileOpenDialog) );
                                 
@@ -468,6 +470,8 @@ nfdresult_t NFD_OpenDialogWCHAR_T(const nfdchar_t *filterList,
 
     ::IFileOpenDialog *fileOpenDialog(NULL);
 
+    HRESULT result;
+
     if (!SUCCEEDED(coResult) && coResult != RPC_E_CHANGED_MODE) {
         fileOpenDialog = NULL;
         NFDi_SetError("Could not initialize COM.");
@@ -475,7 +479,7 @@ nfdresult_t NFD_OpenDialogWCHAR_T(const nfdchar_t *filterList,
     }
 
     // Create dialog
-    HRESULT result = ::CoCreateInstance(::CLSID_FileOpenDialog, NULL,
+    result = ::CoCreateInstance(::CLSID_FileOpenDialog, NULL,
         CLSCTX_ALL, ::IID_IFileOpenDialog,
         reinterpret_cast<void **>(&fileOpenDialog));
 
